@@ -16,7 +16,7 @@ This template is meant for monitoring Unifi network devices using Unifi Network 
 | Type | Description         |
 | ---- | ------------------- |
 | udm  | Unifi Dream Machine |
-| uxg  | UXG Gateway		 |
+| uxg  | UXG Gateway         |
 | usw  | Unifi Switch        |
 | uap  | Unifi Acccess Point |
 
