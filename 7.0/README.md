@@ -18,7 +18,7 @@ Once you create view only user, on Zabbix create a new host and link ***Unifi Ne
 
 If you prefer you can modify other macros for further personalize trigger parameters.
 
-If you done all right now it auto discover all Unifi Dream Machine, Unifi Switch and Unifi Access Point and create an host object for all of them.
+If you've done everything right, the template will auto discover all Unifi Dream Machines, Unifi UXG Gateways, Unifi Switches, and Unifi Access Points and create a host objects for each.
 
 ## Templates
 
@@ -26,6 +26,7 @@ If you done all right now it auto discover all Unifi Dream Machine, Unifi Switch
 | ------------- | ---------------------------- |
 | Unifi Network | Unifi Network Template       |
 | Unifi UDM     | Unifi Dream Machine Template |
+| Unifi UXG     | Unifi UXG Template           |
 | Unifi USW     | Unifi Switch Template        |
 | Unifi UAP     | Unifi Access Point Template  |
 
@@ -72,66 +73,71 @@ If you done all right now it auto discover all Unifi Dream Machine, Unifi Switch
 | *API stat/device-basic*: Device UAP | Discover all Unifi Access Point devices  | `Dependent item` | unifi.device.uap.discovery      |
 | *API stat/device-basic*: Device UDM | Discover all Unifi Dream Machine devices | `Dependent item` | unifi.device.udm.discovery      |
 | *API stat/device-basic*: Device USW | Discover all Unifi Switch devices        | `Dependent item` | unifi.device.usw.discovery      |
+| *API stat/device-basic*: Device UXG | Discover all Unifi UXG devices           | `Dependent item` | unifi.device.uxg.discovery      |
 
 ## Unifi Network: Items prototype
 
-| Name                                                       | Description                   | Type             | Key and additional info                          |
-| ---------------------------------------------------------- | ----------------------------- | ---------------- | ------------------------------------------------ |
-| *API stat/sta*: {#NAME} DNS Record                         | Client dns record             | `Dependent item` | unifi.client.wired.dns.record[{#MAC}]            |
-| *API stat/sta*: {#NAME} DNS Record Enabled                 | Client dns record enabled     | `Dependent item` | unifi.client.wired.dns.record.enabled[{#MAC}]    |
-| *API stat/sta*: {#NAME} First Seen                         | Client first seen date        | `Dependent item` | unifi.client.wired.seen.first[{#MAC}]            |
-| *API stat/sta*: {#NAME} Guest                              | Client is guest               | `Dependent item` | unifi.client.wired.guest[{#MAC}]                 |
-| *API stat/sta*: {#NAME} Hostname                           | Client hostname               | `Dependent item` | unifi.client.wired.hostname[{#MAC}]              |
-| *API stat/sta*: {#NAME} IP                                 | Client IP                     | `Dependent item` | unifi.client.wired.ip[{#MAC}]                    |
-| *API stat/sta*: {#NAME} IP Fixed                           | Client IP is fixed            | `Dependent item` | unifi.client.wired.ip.fixed[{#MAC}]              |
-| *API stat/sta*: {#NAME} Last Seen                          | Client last seen date         | `Dependent item` | unifi.client.wired.seen.last[{#MAC}]             |
-| *API stat/sta*: {#NAME} Macaddress                         | Client Macaddress             | `Dependent item` | unifi.client.wired.mac[{#MAC}]                   |
-| *API stat/sta*: {#NAME} Network                            | Client Network                | `Dependent item` | unifi.client.wired.network[{#MAC}]               |
-| *API stat/sta*: {#NAME} Uptime                             | Client uptime                 | `Dependent item` | unifi.client.wired.uptime[{#MAC}]                |
-| *API stat/sta*: {#NAME} Vlan                               | Client vlan id                | `Dependent item` | unifi.client.wired.vlan[{#MAC}]                  |
-| *API stat/sta*: {#NAME} Wired Switch Depth                 | Client switch depth           | `Dependent item` | unifi.client.wired.sw.depth[{#MAC}]              |
-| *API stat/sta*: {#NAME} Wired Switch Port                  | Client switch port            | `Dependent item` | unifi.client.wired.sw.port[{#MAC}]               |
-| *API stat/sta*: {#NAME} Wired Switch Port Macaddress       | Client switch macaddress port | `Dependent item` | unifi.client.wired.sw.port.mac[{#MAC}]           |
-| *API stat/sta*: {#NAME} Wired Switch Port Speed            | Client switch port speed      | `Dependent item` | unifi.client.wired.sw.port.speed[{#MAC}]         |
-| *API stat/sta*: {#NAME} Wired Switch Port Total rx         | Client total rx byte          | `Dependent item` | unifi.client.wired.sw.port.rx.bytes[{#MAC}]      |
-| *API stat/sta*: {#NAME} Wired Switch Port Total rx Packets | Client total rx packets       | `Dependent item` | unifi.client.wired.sw.port.rx.packets[{#MAC}]    |
-| *API stat/sta*: {#NAME} Wired Switch Port rx Rate          | Client rx rate byte/seconds   | `Dependent item` | unifi.client.wired.sw.port.rx.bytes.r[{#MAC}]    |
-| *API stat/sta*: {#NAME} Wired Switch Port Total tx         | Client total tx byte          | `Dependent item` | unifi.client.wired.sw.port.tx.bytes[{#MAC}]      |
-| *API stat/sta*: {#NAME} Wired Switch Port Total tx Packets | Client total tx packets       | `Dependent item` | unifi.client.wired.sw.port.tx.packets[{#MAC}]    |
-| *API stat/sta*: {#NAME} Wired Switch Port tx Rate          | Client tx rate byte/seconds   | `Dependent item` | unifi.client.wired.sw.port.tx.bytes.r[{#MAC}]    |
-| *API stat/sta*: {#NAME} DNS Record                         | Client dns record             | `Dependent item` | unifi.client.wireless.dns.record[{#MAC}]         |
-| *API stat/sta*: {#NAME} DNS Record Enabled                 | Client dns record enabled     | `Dependent item` | unifi.client.wireless.dns.record.enabled[{#MAC}] |
-| *API stat/sta*: {#NAME} First Seen                         | Client first seen date        | `Dependent item` | unifi.client.wireless.seen.first[{#MAC}]         |
-| *API stat/sta*: {#NAME} Guest                              | Client is guest               | `Dependent item` | unifi.client.wireless.guest[{#MAC}]              |
-| *API stat/sta*: {#NAME} Hostname                           | Client hostname               | `Dependent item` | unifi.client.wireless.hostname[{#MAC}]           |
-| *API stat/sta*: {#NAME} IP                                 | Client IP                     | `Dependent item` | unifi.client.wireless.ip[{#MAC}]                 |
-| *API stat/sta*: {#NAME} IP Fixed                           | Client IP is fixed            | `Dependent item` | unifi.client.wireless.ip.fixed[{#MAC}]           |
-| *API stat/sta*: {#NAME} Last Seen                          | Client last seen date         | `Dependent item` | unifi.client.wireless.seen.last[{#MAC}]          |
-| *API stat/sta*: {#NAME} Macaddress                         | Client Macaddress             | `Dependent item` | unifi.client.wireless.mac[{#MAC}]                |
-| *API stat/sta*: {#NAME} Network                            | Client Network                | `Dependent item` | unifi.client.wireless.network[{#MAC}]            |
-| *API stat/sta*: {#NAME} Uptime                             | Client uptime                 | `Dependent item` | unifi.client.wireless.uptime[{#MAC}]             |
-| *API stat/sta*: {#NAME} Vlan                               | Client vlan id                | `Dependent item` | unifi.client.wireless.vlan[{#MAC}]               |
-| *API stat/sta*: {#NAME} Wireless AP bssid                  | Access Point bssid            | `Dependent item` | unifi.client.wireless.ap.bssid[{#MAC}]           |
-| *API stat/sta*: {#NAME} Wireless AP Channel                | Access Point channel          | `Dependent item` | unifi.client.wireless.ap.channel[{#MAC}]         |
-| *API stat/sta*: {#NAME} Wireless AP essid                  | Access Point essid            | `Dependent item` | unifi.client.wireless.ap.essid[{#MAC}]           |
-| *API stat/sta*: {#NAME} Wireless AP Macaddress             | Access Point macaddress       | `Dependent item` | unifi.client.wireless.ap.mac[{#MAC}]             |
-| *API stat/sta*: {#NAME} Wireless AP Radio                  | Client radio                  | `Dependent item` | unifi.client.wireless.ap.radio[{#MAC}]           |
-| *API stat/sta*: {#NAME} Wireless Noise                     | Client noise                  | `Dependent item` | unifi.client.wireless.ap.noise[{#MAC}]           |
-| *API stat/sta*: {#NAME} Wireless powersave                 | Client is in powersave        | `Dependent item` | unifi.client.wireless.ap.powersave[{#MAC}]       |
-| *API stat/sta*: {#NAME} Wireless Total rx                  | Client total rx byte          | `Dependent item` | unifi.client.wireless.rx.bytes[{#MAC}]           |
-| *API stat/sta*: {#NAME} Wireless Total rx Packets          | Client total rx packets       | `Dependent item` | unifi.client.wireless.rx.packets[{#MAC}]         |
-| *API stat/sta*: {#NAME} Wireless rx Rate                   | Client rx rate byte/seconds   | `Dependent item` | unifi.client.wireless.rx.bytes.r[{#MAC}]         |
-| *API stat/sta*: {#NAME} Wireless Total tx                  | Client total tx byte          | `Dependent item` | unifi.client.wireless.tx.bytes[{#MAC}]           |
-| *API stat/sta*: {#NAME} Wireless Total tx Packets          | Client total tx packets       | `Dependent item` | unifi.client.wireless.tx.packets[{#MAC}]         |
-| *API stat/sta*: {#NAME} Wireless tx Rate                   | Client tx rate byte/seconds   | `Dependent item` | unifi.client.wireless.tx.bytes.r[{#MAC}]         |
+| Name                                                       | Description                      | Type             | Key and additional info                          |
+| ---------------------------------------------------------- | -------------------------------- | ---------------- | ------------------------------------------------ |
+| *API stat/sta*: {#NAME} DNS Record                         | Client dns record                | `Dependent item` | unifi.client.wired.dns.record[{#MAC}]            |
+| *API stat/sta*: {#NAME} DNS Record Enabled                 | Client dns record enabled        | `Dependent item` | unifi.client.wired.dns.record.enabled[{#MAC}]    |
+| *API stat/sta*: {#NAME} First Seen                         | Client first seen date           | `Dependent item` | unifi.client.wired.seen.first[{#MAC}]            |
+| *API stat/sta*: {#NAME} Guest                              | Client is guest                  | `Dependent item` | unifi.client.wired.guest[{#MAC}]                 |
+| *API stat/sta*: {#NAME} Hostname                           | Client hostname                  | `Dependent item` | unifi.client.wired.hostname[{#MAC}]              |
+| *API stat/sta*: {#NAME} IP                                 | Client IP                        | `Dependent item` | unifi.client.wired.ip[{#MAC}]                    |
+| *API stat/sta*: {#NAME} IP Fixed                           | Client IP is fixed               | `Dependent item` | unifi.client.wired.ip.fixed[{#MAC}]              |
+| *API stat/sta*: {#NAME} Last Seen                          | Client last seen date            | `Dependent item` | unifi.client.wired.seen.last[{#MAC}]             |
+| *API stat/sta*: {#NAME} Macaddress                         | Client Macaddress                | `Dependent item` | unifi.client.wired.mac[{#MAC}]                   |
+| *API stat/sta*: {#NAME} Network                            | Client Network                   | `Dependent item` | unifi.client.wired.network[{#MAC}]               |
+| *API stat/sta*: {#NAME} Uptime                             | Client uptime                    | `Dependent item` | unifi.client.wired.uptime[{#MAC}]                |
+| *API stat/sta*: {#NAME} Vlan                               | Client vlan id                   | `Dependent item` | unifi.client.wired.vlan[{#MAC}]                  |
+| *API stat/sta*: {#NAME} Wired Switch Depth                 | Client switch depth              | `Dependent item` | unifi.client.wired.sw.depth[{#MAC}]              |
+| *API stat/sta*: {#NAME} Wired Switch Port                  | Client switch port               | `Dependent item` | unifi.client.wired.sw.port[{#MAC}]               |
+| *API stat/sta*: {#NAME} Wired Switch Port Macaddress       | Client switch macaddress port    | `Dependent item` | unifi.client.wired.sw.port.mac[{#MAC}]           |
+| *API stat/sta*: {#NAME} Wired Switch Port rx Rate          | Client rx rate byte/seconds      | `Dependent item` | unifi.client.wired.sw.port.rx.bytes.r[{#MAC}]    |
+| *API stat/sta*: {#NAME} Wired Switch Port Speed            | Client switch port speed         | `Dependent item` | unifi.client.wired.sw.port.speed[{#MAC}]         |
+| *API stat/sta*: {#NAME} Wired Switch Port Total rx         | Client total rx byte             | `Dependent item` | unifi.client.wired.sw.port.rx.bytes[{#MAC}]      |
+| *API stat/sta*: {#NAME} Wired Switch Port Total rx Packets | Client total rx packets          | `Dependent item` | unifi.client.wired.sw.port.rx.packets[{#MAC}]    |
+| *API stat/sta*: {#NAME} Wired Switch Port Total tx         | Client total tx byte             | `Dependent item` | unifi.client.wired.sw.port.tx.bytes[{#MAC}]      |
+| *API stat/sta*: {#NAME} Wired Switch Port Total tx Packets | Client total tx packets          | `Dependent item` | unifi.client.wired.sw.port.tx.packets[{#MAC}]    |
+| *API stat/sta*: {#NAME} Wired Switch Port tx Rate          | Client tx rate byte/seconds      | `Dependent item` | unifi.client.wired.sw.port.tx.bytes.r[{#MAC}]    |
+| *API stat/sta*: {#NAME} DNS Record                         | Client dns record                | `Dependent item` | unifi.client.wireless.dns.record[{#MAC}]         |
+| *API stat/sta*: {#NAME} DNS Record Enabled                 | Client dns record enabled        | `Dependent item` | unifi.client.wireless.dns.record.enabled[{#MAC}] |
+| *API stat/sta*: {#NAME} First Seen                         | Client first seen date           | `Dependent item` | unifi.client.wireless.seen.first[{#MAC}]         |
+| *API stat/sta*: {#NAME} Guest                              | Client is guest                  | `Dependent item` | unifi.client.wireless.guest[{#MAC}]              |
+| *API stat/sta*: {#NAME} Hostname                           | Client hostname                  | `Dependent item` | unifi.client.wireless.hostname[{#MAC}]           |
+| *API stat/sta*: {#NAME} IP                                 | Client IP                        | `Dependent item` | unifi.client.wireless.ip[{#MAC}]                 |
+| *API stat/sta*: {#NAME} IP Fixed                           | Client IP is fixed               | `Dependent item` | unifi.client.wireless.ip.fixed[{#MAC}]           |
+| *API stat/sta*: {#NAME} Last Seen                          | Client last seen date            | `Dependent item` | unifi.client.wireless.seen.last[{#MAC}]          |
+| *API stat/sta*: {#NAME} Macaddress                         | Client Macaddress                | `Dependent item` | unifi.client.wireless.mac[{#MAC}]                |
+| *API stat/sta*: {#NAME} Network                            | Client Network                   | `Dependent item` | unifi.client.wireless.network[{#MAC}]            |
+| *API stat/sta*: {#NAME} Uptime                             | Client uptime                    | `Dependent item` | unifi.client.wireless.uptime[{#MAC}]             |
+| *API stat/sta*: {#NAME} Vlan                               | Client vlan id                   | `Dependent item` | unifi.client.wireless.vlan[{#MAC}]               |
+| *API stat/sta*: {#NAME} Wireless AP bssid                  | Access Point bssid               | `Dependent item` | unifi.client.wireless.ap.bssid[{#MAC}]           |
+| *API stat/sta*: {#NAME} Wireless AP Channel                | Access Point channel             | `Dependent item` | unifi.client.wireless.ap.channel[{#MAC}]         |
+| *API stat/sta*: {#NAME} Wireless AP Connection rx rate     | Client WLAN Connection rx Rate   | `Dependent item` | unifi.client.wireless.rx.rates[{#MAC}]           |
+| *API stat/sta*: {#NAME} Wireless AP Connection tx rate     | Client WLAN Connection tx Rate   | `Dependent item` | unifi.client.wireless.tx.rates[{#MAC}]           |
+| *API stat/sta*: {#NAME} Wireless AP essid                  | Access Point essid               | `Dependent item` | unifi.client.wireless.ap.essid[{#MAC}]           |
+| *API stat/sta*: {#NAME} Wireless AP Macaddress             | Access Point macaddress          | `Dependent item` | unifi.client.wireless.ap.mac[{#MAC}]             |
+| *API stat/sta*: {#NAME} Wireless AP Radio                  | Client radio                     | `Dependent item` | unifi.client.wireless.ap.radio[{#MAC}]           |
+| *API stat/sta*: {#NAME} Wireless Noise                     | Client noise                     | `Dependent item` | unifi.client.wireless.ap.noise[{#MAC}]           |
+| *API stat/sta*: {#NAME} Wireless powersave                 | Client is in powersave           | `Dependent item` | unifi.client.wireless.ap.powersave[{#MAC}]       |
+| *API stat/sta*: {#NAME} Wireless Rate rx                   | Client rx rate byte/seconds      | `Dependent item` | unifi.client.wireless.rx.bytes.r[{#MAC}]         |
+| *API stat/sta*: {#NAME} Wireless Rate tx                   | Client tx rate byte/seconds      | `Dependent item` | unifi.client.wireless.tx.bytes.r[{#MAC}]         |
+| *API stat/sta*: {#NAME} Wireless Signal                    | Wireless Signal                  | `Dependent item` | unifi.client.wireless.signal[{#MAC}]             |
+| *API stat/sta*: {#NAME} Wireless Total rx                  | Client total rx byte             | `Dependent item` | unifi.client.wireless.rx.bytes[{#MAC}]           |
+| *API stat/sta*: {#NAME} Wireless Total rx Packets          | Client total rx packets          | `Dependent item` | unifi.client.wireless.rx.packets[{#MAC}]         |
+| *API stat/sta*: {#NAME} Wireless Total tx                  | Client total tx byte             | `Dependent item` | unifi.client.wireless.tx.bytes[{#MAC}]           |
+| *API stat/sta*: {#NAME} Wireless Total tx Packets          | Client total tx packets          | `Dependent item` | unifi.client.wireless.tx.packets[{#MAC}]         |
 
 ## Unifi Network: Host prototypes
 
-| Name              | Description                                            | Templates | Host Group |
-| ----------------- | ------------------------------------------------------ | --------- | ---------- |
-| Unifi UAP {#NAME} | Create an host for each Unifi Access Point discovered  | Unifi UAP | Network    |
-| Unifi UDM {#NAME} | Create an host for each Unifi Dream Machine discovered | Unifi UDM | Network    |
-| Unifi USW {#NAME} | Create an host for each Unifi Switch discovered        | Unifi UAP | Network    |
+| Name              | Description                                            | Templates | Host Group           |
+| ----------------- | ------------------------------------------------------ | --------- | -------------------- |
+| Unifi UAP {#NAME} | Create an host for each Unifi Access Point discovered  | Unifi UAP | Network, All Hosts   |
+| Unifi UDM {#NAME} | Create an host for each Unifi Dream Machine discovered | Unifi UDM | Network, All Hosts   |
+| Unifi USW {#NAME} | Create an host for each Unifi Switch discovered        | Unifi UAP | Network, All Hosts   |
+| Unifi UXG {#NAME} | Create an host for each Unifi UXG Gateway discovered   | Unifi UXG | Network, All Hosts   |
 
 ## Unifi Network: Items
 
@@ -168,11 +174,11 @@ If you done all right now it auto discover all Unifi Dream Machine, Unifi Switch
 | *API stat/health*: Unifi Gateway WLAN AP Pending      | Number of pending Unifi Access Point       | `Dependent item` | unifi.wlan.ap.pending         |
 | *API stat/health*: Unifi Gateway WLAN Client          | Number of clients on wlan                  | `Dependent item` | unifi.wlan.client             |
 | *API stat/health*: Unifi Gateway WLAN Guest Client    | Number of clients on guest wlan            | `Dependent item` | unifi.wlan.guest.client       |
-| *API stat/health*: Unifi Gateway WLAN Status          | Lan status                                 | `Dependent item` | unifi.wlan.status             |
+| *API stat/health*: Unifi Gateway WLAN Status          | WLAN status                                | `Dependent item` | unifi.wlan.status             |
 
 ## Unifi Network: Triggers
 
-| Name | Description | Expression | Priority |
+| Name | Description | Expression | Severity |
 | ---  | ----------- | ---------- | -------- |
 | CPU Usage > {$UNIFI.CPU.USAGE.HIGH}% | Alert when CPU usage is above {$UNIFI.CPU.USAGE.HIGH} | <p>***Expression***: avg(/Unifi Network/unifi.cpu,{$UNIFI.CPU.USAGE.HIGH.SEC})>{$UNIFI.CPU.USAGE.HIGH}</p><p>***Recovery expression***:</p> | High |
 | CPU Usage > {$UNIFI.CPU.USAGE.WARNING}% | Alert when CPU usage is above {$UNIFI.CPU.USAGE.WARNING} | <p>***Expression***: avg(/Unifi Network/unifi.cpu,{$UNIFI.CPU.USAGE.WARNING.SEC})>{$UNIFI.CPU.USAGE.WARNING}</p><p>***Recovery expression***:</p> | Warning |
@@ -258,7 +264,7 @@ If you done all right now it auto discover all Unifi Dream Machine, Unifi Switch
 
 ## Unifi UDM: Triggers prototype
 
-| Name                                | Description                                           | Expression                                                                                                                                          | Priority |
+| Name                                | Description                                           | Expression                                                                                                                                          | Severity |
 | ----------------------------------  | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | Temperature > {$UNIFI.TEMP.HIGH}    | Alert when temperature is above {$UNIFI.TEMP.HIGH}    | <p>***Expression***: last(/Unifi UDM/udm.temperature[{#NAME}],{$UNIFI.TEMP.HIGH.SEC})>{$UNIFI.TEMP.HIGH}</p><p>***Recovery expression***:</p>       | High     |
 | Temperature > {$UNIFI.TEMP.WARNING} | Alert when temperature is above {$UNIFI.TEMP.WARNING} | <p>***Expression***: last(/Unifi UDM/udm.temperature[{#NAME}],{$UNIFI.TEMP.WARNING.SEC})>{$UNIFI.TEMP.WARNING}</p><p>***Recovery expression***:</p> | Warning  |
@@ -290,7 +296,7 @@ If you done all right now it auto discover all Unifi Dream Machine, Unifi Switch
 
 ## Unifi UDM: Triggers
 
-| Name                                          | Description                                                    | Expression                                                             | Priority |
+| Name                                          | Description                                                    | Expression                                                             | Severity |
 | --------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------- | -------- |
 | CPU Usage > {$UNIFI.CPU.USAGE.HIGH}%          | Alert when CPU usage is above {$UNIFI.CPU.USAGE.HIGH}          | <p>***Expression***: avg(/Unifi UDM/unifi.udm.cpu.usage,{$UNIFI.CPU.USAGE.HIGH.SEC})>{$UNIFI.CPU.USAGE.HIGH}</p><p>***Recovery expression***:</p> | High        |
 | CPU Usage > {$UNIFI.CPU.USAGE.WARNING}%       | Alert when CPU usage is above {$UNIFI.CPU.USAGE.WARNING}       | <p>***Expression***: avg(/Unifi UDM/unifi.udm.cpu.usage,{$UNIFI.CPU.USAGE.WARNING.SEC})>{$UNIFI.CPU.USAGE.WARNING}</p><p>***Recovery expression***:</p> | Warning     |
@@ -303,6 +309,129 @@ If you done all right now it auto discover all Unifi Dream Machine, Unifi Switch
 | Memory Usage > {$UNIFI.MEMORY.USAGE.WARNING}% | Alert when Memory usage is above {$UNIFI.MEMORY.USAGE.WARNING} | <p>***Expression***: avg(/Unifi UDM/unifi.udm.memory.usage,{$UNIFI.MEMORY.USAGE.WARNING.SEC})>{$UNIFI.MEMORY.USAGE.WARNING}</p><p>***Recovery expression***:</p> | Warning     |
 | Software Upgrade Available                    | Alert on software upgrade available                            | <p>***Expression***: last(/Unifi UDM/unifi.udm.upgradable)="true"</p><p>***Recovery expression***:</p> | Warning     |
 | Software Version Changed                      | Alert on software version change                               | <p>***Expression***: last(/Unifi UDM/unifi.udm.version,#1:now-24h)<>last(/Unifi UDM/unifi.udm.version,#1)=1</p><p>***Recovery expression***:</p> | Information |
+
+## Unifi UXG: Macros
+
+| Name                                    | Description                                           | Default                            | Required | Type      |
+| --------------------------------------- | ----------------------------------------------------- | ---------------------------------- | -------- | --------- |
+| {$UNIFI.CPU.USAGE.HIGH}                 | Cpu % High Trigger threshold                          | `90`                               | `true`   | `numeric` |
+| {$UNIFI.CPU.USAGE.HIGH.SEC}             | Cpu High Trigger Avg threshold in seconds             | `900`                              | `true`   | `numeric` |
+| {$UNIFI.CPU.USAGE.WARNING}              | Cpu % Warning Trigger threshold                       | `80`                               | `true`   | `numeric` |
+| {$UNIFI.CPU.USAGE.WARNING.SEC}          | Cpu Warning Trigger Avg threshold in seconds          | `900`                              | `true`   | `numeric` |
+| {$UNIFI.IP}                             | Unifi Ip                                              | `-`                                | `true`   | `text`    |
+| {$UNIFI.MEMORY.USAGE.HIGH}              | Memory % High Trigger threshold                       | `90`                               | `true`   | `numeric` |
+| {$UNIFI.MEMORY.USAGE.HIGH.SEC}          | Memory High Trigger Avg threshold in seconds          | `900`                              | `true`   | `numeric` |
+| {$UNIFI.MEMORY.USAGE.WARNING}           | Memory % Warning Trigger threshold                    | `80`                               | `true`   | `numeric` |
+| {$UNIFI.MEMORY.USAGE.WARNING.SEC}       | Memory Warning Trigger Avg threshold in seconds       | `900`                              | `true`   | `numeric` |
+| {$UNIFI.PASSWORD}                       | Unifi View Only Password                              | `-`                                | `true`   | `numeric` |
+| {$UNIFI.TEMP.HIGH}                      | Temperatire High Trigger threshold                    | `80`                               | `true`   | `numeric` |
+| {$UNIFI.TEMP.HIGH.SEC}                  | Temperatire High Trigger threshold in sec             | `900`                              | `true`   | `numeric` |
+| {$UNIFI.TEMP.WARNING}                   | Temperatire Warning Trigger threshold                 | `80`                               | `true`   | `numeric` |
+| {$UNIFI.TEMP.WARNING.SEC}               | Temperatire Warning Trigger threshold in sec          | `900`                              | `true`   | `numeric` |
+| {$UNIFI.UXG.MAC}                        | UNIFI GW Macaddress                                   | `-`                                | `true`   | `text`    |
+| {$UNIFI.USERNAME}                       | Unifi View Only Username                              | `-`                                | `true`   | `numeric` |
+| {$UNIFI.API.AUTH.URI}                   | Unifi API Authentication route                        | `api/auth/login`                   | `true`   | `text`    |
+| {$UNIFI.API.AUTH.TOKEN}                 | Unifi API Authentication cookie name                  | `TOKEN`                            | `true`   | `text`    |
+| {$UNIFI.API.URI}                        | Unifi API route                                       | `proxy/network/api/s/default/stat` | `true`   | `text`    |
+
+## Unifi UXG: Discovery rules
+
+| Name                                             | Description                      | Type             | Key and additional info         |
+| ------------------------------------------------ | -------------------------------- | ---------------- | ------------------------------- |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port         | Discover UXG ports               | `Dependent item` | unifi.UXG.port.discovery        |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Temperatures | Discover UXG temperature sensors | `Dependent item` | unifi.UXG.temperature.discovery |
+
+## Unifi UXG: Items prototype
+
+| Name                                                              | Description                   | Type             | Key and additional info            |
+| ----------------------------------------------------------------- | ----------------------------- | ---------------- | ---------------------------------- |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Enabled            | Port enabled                  | `Dependent item` | unifi.UXG.port.enabled[{#ID}]      |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Media              | Port type                     | `Dependent item` | unifi.UXG.port.media[{#ID}]        |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Mode               | Port mode                     | `Dependent item` | unifi.UXG.port.mode[{#ID}]         |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Name               | Port name                     | `Dependent item` | unifi.UXG.port.name[{#ID}]         |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} POE Capable        | Port POE capable              | `Dependent item` | unifi.UXG.port.poe.capable[{#ID}]  |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} POE Good           | Port POE state                | `Dependent item` | unifi.UXG.port.poe.good[{#ID}]     |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} POE Mode           | Port POE mode                 | `Dependent item` | unifi.UXG.port.poe.mode[{#ID}]     |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} POE Power          | Port POE Watt                 | `Dependent item` | unifi.UXG.port.poe.power[{#ID}]    |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Rate RX            | Port rx rate in Bps           | `Dependent item` | unifi.UXG.port.rx.rate[{#ID}]      |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Rate TX            | Port tx rate in Bps           | `Dependent item` | unifi.UXG.port.tx.rate[{#ID}]      |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Speed              | Port speed                    | `Dependent item` | unifi.UXG.port.speed[{#ID}]        |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Total RX           | Port total rx bytes           | `Dependent item` | unifi.UXG.port.rx[{#ID}]           |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Total RX Broadcast | Port total rx broadcast bytes | `Dependent item` | unifi.UXG.port.rx.broadcast[{#ID}] |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Total RX Delta     | Port total rx bytes delta     | `Dependent item` | unifi.UXG.port.rx.delta[{#ID}]     |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Total RX Dropped   | Port total rx dropped bytes   | `Dependent item` | unifi.UXG.port.rx.dropped[{#ID}]   |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Total RX Errors    | Port total rx error bytes     | `Dependent item` | unifi.UXG.port.rx.errors[{#ID}]    |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Total RX Multicast | Port total rx multicast bytes | `Dependent item` | unifi.UXG.port.rx.multicast[{#ID}] |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Total RX Packets   | Port total rx packets         | `Dependent item` | unifi.UXG.port.rx.packets[{#ID}]   |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Total TX           | Port total tx bytes           | `Dependent item` | unifi.UXG.port.tx[{#ID}]           |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Total TX Broadcast | Port total tx broadcast bytes | `Dependent item` | unifi.UXG.port.tx.broadcast[{#ID}] |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Total TX Delta     | Port total tx bytes delta     | `Dependent item` | unifi.UXG.port.tx.delta[{#ID}]     |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Total TX Dropped   | Port total tx dropped bytes   | `Dependent item` | unifi.UXG.port.tx.dropped[{#ID}]   |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Total TX Errors    | Port total tx errors bytes    | `Dependent item` | unifi.UXG.port.tx.errors[{#ID}]    |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Total TX Multicast | Port total tx multicast bytes | `Dependent item` | unifi.UXG.port.tx.multicast[{#ID}] |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Total TX Packets   | Port total tx packets         | `Dependent item` | unifi.UXG.port.tx.packets[{#ID}]   |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Port {#ID} Up                 | Port up state                 | `Dependent item` | unifi.UXG.port.up[{#ID}]           |
+| *API stat/device/{$UNIFI.UXG.MAC}*: Temperature {#NAME}           | Temperature                   | `Dependent item` | UXG.temperature[{#NAME}]           |
+
+## Unifi UXG: Triggers prototype
+
+| Name                                  | Description                                                           | Expression                                                                                                                                          | Severity |
+| ------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Port {#ID} ({#NAME}) > Down           | Alert when port is down & not disabled                                | <p>***Expression***: last(/Unifi UXG/unifi.UXG.port.up[{#ID}],#1)="false" and last(/Unifi UXG/unifi.UXG.port.enabled[{#ID}],#1)="true"</p><p>***Recovery expression***:</p> | Information     |
+| Port {#ID} ({#NAME}) > High Bandwidth | Alert when rx or tx bandwith 5 min average is above 90% of port speed | <p>***Expression***: (avg(/Unifi UXG/unifi.UXG.port.rx.rate[{#ID}],5m)>(last(/Unifi UXG/unifi.UXG.port.speed[{#ID}],#1)*0.9) or avg(/Unifi UXG/unifi.UXG.port.tx.rate[{#ID}],5m)>(last(/Unifi UXG/unifi.UXG.port.speed[{#ID}],#1)*0.9)) and last(/Unifi UXG/unifi.UXG.port.speed[{#ID}],#1)>0</p><p>***Recovery expression***:</p> | Information        |
+| Temperature > {$UNIFI.TEMP.HIGH}      | Alert when temperature is above {$UNIFI.TEMP.HIGH}                    | <p>***Expression***: last(/Unifi UXG/UXG.temperature[{#NAME}],{$UNIFI.TEMP.HIGH.SEC})>{$UNIFI.TEMP.HIGH}</p><p>***Recovery expression***:</p>       | High     |
+| Temperature > {$UNIFI.TEMP.WARNING}   | Alert when temperature is above {$UNIFI.TEMP.WARNING}                 | <p>***Expression***: last(/Unifi UXG/UXG.temperature[{#NAME}],{$UNIFI.TEMP.WARNING.SEC})>{$UNIFI.TEMP.WARNING}</p><p>***Recovery expression***:</p> | Warning  |
+
+## Unifi UXG: Items
+
+| Name                                                          | Description                     | Type             | Key and additional info           |
+| ------------------------------------------------------------- | ------------------------------- | ---------------- | --------------------------------- |
+| API stat/device/{$UNIFI.UXG.MAC}                              | Get device metrics              | `HTTP agent`     | unifi.UXG.device<p>Update: 5m</p> |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Adopted               | Is adopted                      | `Dependent item` | unifi.UXG.adopted                 |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Cpu Load Avg 1 Min    | CPU 1 Min Load Average          | `Dependent item` | unifi.UXG.cpu.load.avg.01min      |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Cpu Load Avg 5 Min    | CPU 5 Min Load Average          | `Dependent item` | unifi.UXG.cpu.load.avg.05min      |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Cpu Load Avg 15 Min   | CPU 15 Min Load Average         | `Dependent item` | unifi.UXG.cpu.load.avg.15min      |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Cpu Usage %           | Current CPU usage in percentage | `Dependent item` | unifi.UXG.cpu.usage               |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Inform Ip             | Inform IP                       | `Dependent item` | unifi.UXG.inform.ip               |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Inform Url            | Inform Url                      | `Dependent item` | unifi.UXG.inform.url              |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG IP LAN                | LAN IP                          | `Dependent item` | unifi.UXG.ip.lan                  |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG IP WAN                | WAN IP                          | `Dependent item` | unifi.UXG.ip.wan                  |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Kernel Version        | Kernel version                  | `Dependent item` | unifi.UXG.kernel.version          |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Last Seen             | Last seen date                  | `Dependent item` | unifi.UXG.lastseen                |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Macaddress            | Macaddress                      | `Dependent item` | unifi.UXG.mac                     |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Management Network    | Management network              | `Dependent item` | unifi.UXG.network                 |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Memory Buffer         | Buffer Memory in bytes          | `Dependent item` | unifi.UXG.memory.buffer           |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Memory Total          | Total Memory in bytes           | `Dependent item` | unifi.UXG.memory.total            |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Memory Usage %        | Current Memory Usage            | `Dependent item` | unifi.UXG.memory.usage            |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Memory Used           | Used  Memory in byte            | `Dependent item` | unifi.UXG.memory.used             |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Model                 | Model                           | `Dependent item` | unifi.UXG.model                   |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Name                  | Name                            | `Dependent item` | unifi.UXG.name                    |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Overheating           | Current overheating status      | `Dependent item` | unifi.UXG.temp.overheating        |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Serial                | Serial                          | `Dependent item` | unifi.UXG.serial                  |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG SOC Arch              | SOC Arch                        | `Dependent item` | unifi.UXG.soc.arch                |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG State                 | State                           | `Dependent item` | unifi.UXG.cpu.state               |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Total RX Byte         | Total rx in bytes               | `Dependent item` | unifi.UXG.rx                      |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Total TX Byte         | Total tx in bytes               | `Dependent item` | unifi.UXG.tx                      |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Upgradable            | Is an upgrade available         | `Dependent item` | unifi.UXG.upgradable              |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Uptime                | Uptime                          | `Dependent item` | unifi.UXG.uptime                  |
+| *API stat/device/{$UNIFI.UXG.MAC}*: UXG Version               | Software version                | `Dependent item` | unifi.UXG.version                 |
+
+## Unifi UXG: Triggers
+
+| Name                                          | Description                                                    | Expression                                                             | Severity |
+| --------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------- | -------- |
+| CPU Usage > {$UNIFI.CPU.USAGE.HIGH}%          | Alert when CPU usage is above {$UNIFI.CPU.USAGE.HIGH}          | <p>***Expression***: avg(/Unifi UXG/unifi.UXG.cpu.usage,{$UNIFI.CPU.USAGE.HIGH.SEC})>{$UNIFI.CPU.USAGE.HIGH}</p><p>***Recovery expression***:</p> | High        |
+| CPU Usage > {$UNIFI.CPU.USAGE.WARNING}%       | Alert when CPU usage is above {$UNIFI.CPU.USAGE.WARNING}       | <p>***Expression***: avg(/Unifi UXG/unifi.UXG.cpu.usage,{$UNIFI.CPU.USAGE.WARNING.SEC})>{$UNIFI.CPU.USAGE.WARNING}</p><p>***Recovery expression***:</p> | Warning     |
+| Device Overheating                            | Alert of overheat flag = true                                  | <p>***Expression***: last(/Unifi USW/unifi.UXG.temp.overheating)="true</p><p>***Recovery expression***:</p> | High     |
+| GW Not Adopted                                | Alert if UXG need to be adopted                                | <p>***Expression***: last(/Unifi UXG/unifi.UXG.adopted)<>"true"</p><p>***Recovery expression***:</p> | Information |
+| GW Offline                                    | Alert when UXG go offline                                      | <p>***Expression***: last(/Unifi UXG/unifi.UXG.cpu.state,#3)<>1</p><p>***Recovery expression***:</p> | High        |
+| GW Rebooted                                   | Alert if UXG was rebooted                                      | <p>***Expression***: last(/Unifi UXG/unifi.UXG.uptime)<1800</p><p>***Recovery expression***:</p> | Warning     |
+| Inform Url Changed                            | Alert on inform url change                                     | <p>***Expression***: last(/Unifi UXG/unifi.UXG.inform.url,#1:now-24h)<>last(/Unifi UXG/unifi.UXG.inform.url,#1)=1</p><p>***Recovery expression***:</p> | Warning     |
+| Management Network Changed                    | Alert on management network change                             | <p>***Expression***: last(/Unifi UXG/unifi.UXG.network,#1:now-24h)<>last(/Unifi UXG/unifi.UXG.network,#1)=1</p><p>***Recovery expression***:</p> | Warning     |
+| Memory Usage > {$UNIFI.MEMORY.USAGE.HIGH}%    | Alert when Memory usage is above {$UNIFI.MEMORY.USAGE.HIGH}    | <p>***Expression***: avg(/Unifi UXG/unifi.UXG.memory.usage,{$UNIFI.MEMORY.USAGE.HIGH.SEC})>{$UNIFI.MEMORY.USAGE.HIGH}</p><p>***Recovery expression***:</p> | High        |
+| Memory Usage > {$UNIFI.MEMORY.USAGE.WARNING}% | Alert when Memory usage is above {$UNIFI.MEMORY.USAGE.WARNING} | <p>***Expression***: avg(/Unifi UXG/unifi.UXG.memory.usage,{$UNIFI.MEMORY.USAGE.WARNING.SEC})>{$UNIFI.MEMORY.USAGE.WARNING}</p><p>***Recovery expression***:</p> | Warning     |
+| Software Upgrade Available                    | Alert on software upgrade available                            | <p>***Expression***: last(/Unifi UXG/unifi.UXG.upgradable)="true"</p><p>***Recovery expression***:</p> | Warning     |
+| Software Version Changed                      | Alert on software version change                               | <p>***Expression***: last(/Unifi UXG/unifi.UXG.version,#1:now-24h)<>last(/Unifi UXG/unifi.UXG.version,#1)=1</p><p>***Recovery expression***:</p> | Information |
 
 ## Unifi USW: Macros
 
@@ -339,55 +468,85 @@ If you done all right now it auto discover all Unifi Dream Machine, Unifi Switch
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} POE Good           | Port POE state                | `Dependent item` | unifi.usw.port.poe.good[{#ID}]     |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} POE Mode           | Port POE mode                 | `Dependent item` | unifi.usw.port.poe.mode[{#ID}]     |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} POE Power          | Port POE Watt                 | `Dependent item` | unifi.usw.port.poe.power[{#ID}]    |
+| *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Rate RX            | Port rx rate Bps              | `Dependent item` | unifi.usw.port.rx.rate[{#ID}]      |
+| *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Rate TX            | Port tx rate Bps              | `Dependent item` | unifi.usw.port.tx.rate[{#ID}]      |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Speed              | Port speed                    | `Dependent item` | unifi.usw.port.speed[{#ID}]        |
+| *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} STP Cost           | Port STP cost                 | `Dependent item` | unifi.usw.port.stp.cost[{#ID}]     |
+| *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} STP State          | Port STP state                | `Dependent item` | unifi.usw.port.stp.state[{#ID}]    |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Total RX           | Port total rx bytes           | `Dependent item` | unifi.usw.port.rx[{#ID}]           |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Total RX Broadcast | Port total rx broadcast bytes | `Dependent item` | unifi.usw.port.rx.broadcast[{#ID}] |
+| *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Total RX Delta     | Port total rx bytes delta     | `Dependent item` | unifi.usw.port.rx.delta[{#ID}]     |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Total RX Dropped   | Port total rx dropped bytes   | `Dependent item` | unifi.usw.port.rx.dropped[{#ID}]   |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Total RX Errors    | Port total rx error bytes     | `Dependent item` | unifi.usw.port.rx.errors[{#ID}]    |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Total RX Multicast | Port total rx multicast bytes | `Dependent item` | unifi.usw.port.rx.multicast[{#ID}] |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Total RX Packets   | Port total rx packets         | `Dependent item` | unifi.usw.port.rx.packets[{#ID}]   |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Total TX           | Port total tx bytes           | `Dependent item` | unifi.usw.port.tx[{#ID}]           |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Total TX Broadcast | Port total tx broadcast bytes | `Dependent item` | unifi.usw.port.tx.broadcast[{#ID}] |
+| *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Total TX Delta     | Port total tx bytes delta     | `Dependent item` | unifi.usw.port.tx.delta[{#ID}]     |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Total TX Dropped   | Port total tx dropped bytes   | `Dependent item` | unifi.usw.port.tx.dropped[{#ID}]   |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Total TX Errors    | Port total tx errors bytes    | `Dependent item` | unifi.usw.port.tx.errors[{#ID}]    |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Total TX Multicast | Port total tx multicast bytes | `Dependent item` | unifi.usw.port.tx.multicast[{#ID}] |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Total TX Packets   | Port total tx packets         | `Dependent item` | unifi.usw.port.tx.packets[{#ID}]   |
 | *API stat/device/{$UNIFI.USW.MAC}*: Port {#ID} Up                 | Port up state                 | `Dependent item` | unifi.usw.port.up[{#ID}]           |
 
+## Unifi USW: Trigger Prototypes
+
+| Name                                          | Description                                                           | Expression                                                             | Severity |
+| --------------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------- | -------- |
+| Port {#ID} ({#NAME}) > Down                   | Alert when port is down & not disabled                                | <p>***Expression***: last(/Unifi USW/unifi.usw.port.up[{#ID}],#1)="false" and last(/Unifi USW/unifi.usw.port.enabled[{#ID}],#1)="true"</p><p>***Recovery expression***:</p> | Information     |
+| Port {#ID} ({#NAME}) > High Bandwidth         | Alert when rx or tx bandwith 5 min average is above 90% of port speed | <p>***Expression***: (avg(/Unifi USW/unifi.usw.port.rx.rate[{#ID}],5m)>(last(/Unifi USW/unifi.usw.port.speed[{#ID}],#1)*0.9) or avg(/Unifi USW/unifi.usw.port.tx.rate[{#ID}],5m)>(last(/Unifi USW/unifi.usw.port.speed[{#ID}],#1)*0.9)) and last(/Unifi USW/unifi.usw.port.speed[{#ID}],#1)>0</p><p>***Recovery expression***:</p> | Information        |
+
 ## Unifi USW: Items
 
-| Name                                                       | Description                     | Type             | Key and additional info           |
-| ---------------------------------------------------------- | ------------------------------- | ---------------- | --------------------------------- |
-| API stat/device/{$UNIFI.USW.MAC}                           | Get device metrics              | `HTTP agent`     | unifi.usw.device<p>Update: 5m</p> |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Adopted            | Is adopted                      | `Dependent item` | unifi.usw.adopted                 |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Cpu Usage %        | Current CPU usage in percentage | `Dependent item` | unifi.usw.cpu.usage               |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Inform Ip          | Inform IP                       | `Dependent item` | unifi.usw.inform.ip               |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Inform Url         | Inform Url                      | `Dependent item` | unifi.usw.inform.url              |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW IP                 | IP                              | `Dependent item` | unifi.usw.ip                      |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Kernel Version     | Kernel version                  | `Dependent item` | unifi.usw.kernel.version          |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Last Seen          | Last seen date                  | `Dependent item` | unifi.usw.lastseen                |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Macaddress         | Macaddress                      | `Dependent item` | unifi.usw.mac                     |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Management Network | Management network              | `Dependent item` | unifi.usw.network                 |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Memory Usage %     | Current Memory Usage            | `Dependent item` | unifi.usw.memory.usage            |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Model              | Model                           | `Dependent item` | unifi.usw.model                   |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Serial             | Serial                          | `Dependent item` | unifi.usw.serial                  |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW SOC Arch           | SOC Arch                        | `Dependent item` | unifi.usw.soc.arch                |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW State              | State                           | `Dependent item` | unifi.usw.cpu.state               |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Total RX Byte      | Total rx in bytes               | `Dependent item` | unifi.usw.rx                      |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Total TX Byte      | Total tx in bytes               | `Dependent item` | unifi.usw.tx                      |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Upgradable         | Is an upgrade available         | `Dependent item` | unifi.usw.upgradable              |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Uplink Device      | Uplink device name              | `Dependent item` | unifi.usw.uplink.device           |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Uplink Port        | Uplink device port              | `Dependent item` | unifi.usw.uplink.port             |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Uplink Type        | Uplink device type              | `Dependent item` | unifi.usw.uplink.type             |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Uptime             | Uptime                          | `Dependent item` | unifi.usw.uptime                  |
-| *API stat/device/{$UNIFI.USW.MAC}*: USW Version            | Software version                | `Dependent item` | unifi.usw.version                 |
+| Name                                                              | Description                                           | Type             | Key and additional info           |
+| ----------------------------------------------------------------- | ----------------------------------------------------- | ---------------- | --------------------------------- |
+| API stat/device/{$UNIFI.USW.MAC}                                  | Get device metrics                                    | `HTTP agent`     | unifi.usw.device<p>Update: 5m</p> |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Adopted                   | Is adopted                                            | `Dependent item` | unifi.usw.adopted                 |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Client Count - All        | Count of all clients connected to switch              | `Dependent item` | unifi.usw.client.count.all        |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Client Count - Guest      | Count of all guest clients connected to switch        | `Dependent item` | unifi.usw.client.count.guest      |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Client Count - Regular    | Count of all non-guest clients connected to switch    | `Dependent item` | unifi.usw.client.count.regular    |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Cpu Load Avg 1 Min        | CPU 1 Min Load Average                                | `Dependent item` | unifi.usw.cpu.load.avg.01min      |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Cpu Load Avg 5 Min        | CPU 5 Min Load Average                                | `Dependent item` | unifi.usw.cpu.load.avg.05min      |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Cpu Load Avg 15 Min       | CPU 15 Min Load Average                               | `Dependent item` | unifi.usw.cpu.load.avg.15min      |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Cpu Usage %               | Current CPU usage in percentage                       | `Dependent item` | unifi.usw.cpu.usage               |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Fan Enabled               | Does USW have a fan                                   | `Dependent item` | unifi.usw.fan.enabled             |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Fan Level                 | Current fan level                                     | `Dependent item` | unifi.usw.fan.level               |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Inform Ip                 | Inform IP                                             | `Dependent item` | unifi.usw.inform.ip               |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Inform Url                | Inform Url                                            | `Dependent item` | unifi.usw.inform.url              |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW IP                        | IP                                                    | `Dependent item` | unifi.usw.ip                      |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Kernel Version            | Kernel version                                        | `Dependent item` | unifi.usw.kernel.version          |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Last Seen                 | Last seen date                                        | `Dependent item` | unifi.usw.lastseen                |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Macaddress                | Macaddress                                            | `Dependent item` | unifi.usw.mac                     |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Management Network        | Management network                                    | `Dependent item` | unifi.usw.network                 |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Memory Buffer             | Buffer Memory in bytes                                | `Dependent item` | unifi.usw.memory.buffer           |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Memory Total              | Total Memory in bytes                                 | `Dependent item` | unifi.usw.memory.total            |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Memory Usage %            | Current Memory Usage                                  | `Dependent item` | unifi.usw.memory.usage            |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Memory Used               | Used Memory in bytes                                  | `Dependent item` | unifi.usw.memory.used             |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Model                     | Model                                                 | `Dependent item` | unifi.usw.model                   |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Name                      | Name		                                            | `Dependent item` | unifi.usw.name                    |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Overheating               | Current overheating status                            | `Dependent item` | unifi.usw.temp.overheating        |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Serial                    | Serial                                                | `Dependent item` | unifi.usw.serial                  |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW SOC Arch                  | SOC Arch                                              | `Dependent item` | unifi.usw.soc.arch                |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW State                     | State                                                 | `Dependent item` | unifi.usw.cpu.state               |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Temp Enabled              | Does USW have temp sensors                            | `Dependent item` | unifi.usw.temp.enabled            |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Temp General              | Current temp in C                                     | `Dependent item` | unifi.usw.temp.general            |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Total RX Byte             | Total rx in bytes                                     | `Dependent item` | unifi.usw.rx                      |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Total TX Byte             | Total tx in bytes                                     | `Dependent item` | unifi.usw.tx                      |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Upgradable                | Is an upgrade available                               | `Dependent item` | unifi.usw.upgradable              |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Uplink Device             | Uplink device name                                    | `Dependent item` | unifi.usw.uplink.device           |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Uplink Port               | Uplink device port                                    | `Dependent item` | unifi.usw.uplink.port             |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Uplink Speed              | Uplink device port speed                              | `Dependent item` | unifi.usw.uplink.speed            |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Uplink Type               | Uplink device type                                    | `Dependent item` | unifi.usw.uplink.type             |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Uptime                    | Uptime                                                | `Dependent item` | unifi.usw.uptime                  |
+| *API stat/device/{$UNIFI.USW.MAC}*: USW Version                   | Software version                                      | `Dependent item` | unifi.usw.version                 |
 
 ## Unifi USW: Triggers
 
-| Name                                          | Description                                                    | Expression                                                             | Priority |
+| Name                                          | Description                                                    | Expression                                                             | Severity |
 | --------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------- | -------- |
 | CPU Usage > {$UNIFI.CPU.USAGE.HIGH}%          | Alert when CPU usage is above {$UNIFI.CPU.USAGE.HIGH}          | <p>***Expression***: avg(/Unifi USW/unifi.usw.cpu.usage,{$UNIFI.CPU.USAGE.HIGH.SEC})>{$UNIFI.CPU.USAGE.HIGH}</p><p>***Recovery expression***:</p> | High        |
 | CPU Usage > {$UNIFI.CPU.USAGE.WARNING}%       | Alert when CPU usage is above {$UNIFI.CPU.USAGE.WARNING}       | <p>***Expression***: avg(/Unifi USW/unifi.usw.cpu.usage,{$UNIFI.CPU.USAGE.WARNING.SEC})>{$UNIFI.CPU.USAGE.WARNING}</p><p>***Recovery expression***:</p> | Warning     |
+| Device Overheating                            | Alert of overheat flag = true                                  | <p>***Expression***: last(/Unifi USW/unifi.usw.temp.overheating)="true</p><p>***Recovery expression***:</p> | High     |
 | Inform Url Changed                            | Alert on inform url change                                     | <p>***Expression***: last(/Unifi USW/unifi.usw.inform.url,#1:now-24h)<>last(/Unifi USW/unifi.usw.inform.url,#1)=1</p><p>***Recovery expression***:</p> | Warning     |
 | Management Network Changed                    | Alert on management network change                             | <p>***Expression***: last(/Unifi USW/unifi.usw.network,#1:now-24h)<>last(/Unifi USW/unifi.usw.network,#1)=1</p><p>***Recovery expression***:</p> | Warning     |
 | Memory Usage > {$UNIFI.MEMORY.USAGE.HIGH}%    | Alert when Memory usage is above {$UNIFI.MEMORY.USAGE.HIGH}    | <p>***Expression***: avg(/Unifi USW/unifi.usw.memory.usage,{$UNIFI.MEMORY.USAGE.HIGH.SEC})>{$UNIFI.MEMORY.USAGE.HIGH}</p><p>***Recovery expression***:</p> | High        |
@@ -397,6 +556,7 @@ If you done all right now it auto discover all Unifi Dream Machine, Unifi Switch
 | SW Not Adopted                                | Alert if USW need to be adopted                                | <p>***Expression***: last(/Unifi USW/unifi.usw.adopted)<>"true"</p><p>***Recovery expression***:</p> | Information |
 | SW Offline                                    | Alert when USW go offline                                      | <p>***Expression***: last(/Unifi USW/unifi.usw.cpu.state,#3)<>1</p><p>***Recovery expression***:</p> | High        |
 | SW Rebooted                                   | Alert if USW was rebooted                                      | <p>***Expression***: last(/Unifi USW/unifi.usw.uptime)<1800</p><p>***Recovery expression***:</p> | Warning     |
+| Uplink Speed Changed to Lower Speed           | Alert if uplink speed decreased                                | <p>***Expression***: last(/Unifi USW/unifi.usw.uplink.speed,#1:now-24h)>last(/Unifi USW/unifi.usw.uplink.speed,#1)=1</p><p>***Recovery expression***:</p> | Information     |
 
 ## Unifi UAP: Macros
 
@@ -437,42 +597,58 @@ If you done all right now it auto discover all Unifi Dream Machine, Unifi Switch
 
 ## Unifi UAP: Triggers prototype
 
-| Name                     | Description                                 | Expression                                                                                                          | Priority |
+| Name                     | Description                                 | Expression                                                                                                          | Severity |
 | -----------------------  | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | -------- |
 | {#NAME} State is not RUN | Alert when antennas is not in running state | <p>***Expression***: last(/Unifi UAP/unifi.uap.radio.state[{#NAME}],#3)<>"RUN"</p><p>***Recovery expression***:</p> | High     |
 
 ## Unifi UAP: Items
 
-| Name                                                       | Description                     | Type             | Key and additional info           |
-| ---------------------------------------------------------- | ------------------------------- | ---------------- | --------------------------------- |
-| API stat/device/{$UNIFI.UAP.MAC}                           | Get device metrics              | `HTTP agent`     | unifi.uap.device<p>Update: 5m</p> |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Adopted            | Is adopted                      | `Dependent item` | unifi.uap.adopted                 |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Cpu Usage %        | Current CPU usage in percentage | `Dependent item` | unifi.uap.cpu.usage               |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Inform Ip          | Inform IP                       | `Dependent item` | unifi.uap.inform.ip               |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Inform Url         | Inform Url                      | `Dependent item` | unifi.uap.inform.url              |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP IP                 | IP                              | `Dependent item` | unifi.uap.ip                      |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Kernel Version     | Kernel version                  | `Dependent item` | unifi.uap.kernel.version          |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Last Seen          | Last seen date                  | `Dependent item` | unifi.uap.lastseen                |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Macaddress         | Macaddress                      | `Dependent item` | unifi.uap.mac                     |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Management Network | Management network              | `Dependent item` | unifi.uap.network                 |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Memory Usage %     | Current Memory Usage            | `Dependent item` | unifi.uap.memory.usage            |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Model              | Model                           | `Dependent item` | unifi.uap.model                   |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Serial             | Serial                          | `Dependent item` | unifi.uap.serial                  |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP SOC Arch           | SOC Arch                        | `Dependent item` | unifi.uap.soc.arch                |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP State              | State                           | `Dependent item` | unifi.uap.cpu.state               |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Total RX Byte      | Total rx in bytes               | `Dependent item` | unifi.uap.rx                      |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Total TX Byte      | Total tx in bytes               | `Dependent item` | unifi.uap.tx                      |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Upgradable         | Is an upgrade available         | `Dependent item` | unifi.uap.upgradable              |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Uplink Device      | Uplink device name              | `Dependent item` | unifi.uap.uplink.device           |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Uplink Port        | Uplink device port              | `Dependent item` | unifi.uap.uplink.port             |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Uplink Type        | Uplink device type              | `Dependent item` | unifi.uap.uplink.type             |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Uptime             | Uptime                          | `Dependent item` | unifi.uap.uptime                  |
-| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Version            | Software version                | `Dependent item` | unifi.uap.version                 |
+| Name                                                                  | Description                                                       | Type             | Key and additional info                |
+| --------------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------- | -------------------------------------- |
+| API stat/device/{$UNIFI.UAP.MAC}                                      | Get device metrics                                                | `HTTP agent`     | unifi.uap.device<p>Update: 5m</p>      |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Adopted                       | Is adopted                                                        | `Dependent item` | unifi.uap.adopted                      |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Client Count - All            | Count of all clients connected to AP.                             | `Dependent item` | unifi.uap.client.count.all             |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Client Count - Guest          | Count of all guest clients connected to AP LAN & WLAN.            | `Dependent item` | unifi.uap.client.count.guest           |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Client Count - Guest WLAN     | Count of all guest clients connected to AP via WLAN.              | `Dependent item` | unifi.uap.client.count.guest.wlan      |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Client Count - Regular        | Count of all non-guest clients connected to AP via LAN & WLAN.    | `Dependent item` | unifi.uap.client.count.regular         |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Client Count - Regular WLAN   | Count of all non-guest clients connected to AP via WLAN.          | `Dependent item` | unifi.uap.client.count.regular.wlan    |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Cpu Load Avg 1 Min            | CPU 1 Min Load Average                                            | `Dependent item` | unifi.uap.cpu.load.avg.01min           |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Cpu Load Avg 5 Min            | CPU 5 Min Load Average                                            | `Dependent item` | unifi.uap.cpu.load.avg.05min           |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Cpu Load Avg 15 Min           | CPU 15 Min Load Average                                           | `Dependent item` | unifi.uap.cpu.load.avg.15min           |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Cpu Usage %                   | Current CPU usage in percentage                                   | `Dependent item` | unifi.uap.cpu.usage                    |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Inform Ip                     | Inform IP                                                         | `Dependent item` | unifi.uap.inform.ip                    |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Inform Url                    | Inform Url                                                        | `Dependent item` | unifi.uap.inform.url                   |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP IP                            | IP                                                                | `Dependent item` | unifi.uap.ip                           |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Kernel Version                | Kernel version                                                    | `Dependent item` | unifi.uap.kernel.version               |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Last Seen                     | Last seen date                                                    | `Dependent item` | unifi.uap.lastseen                     |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Macaddress                    | Macaddress                                                        | `Dependent item` | unifi.uap.mac                          |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Management Network            | Management network                                                | `Dependent item` | unifi.uap.network                      |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Memory Buffer                 | Buffer Memory in bytes                                            | `Dependent item` | unifi.uap.memory.buffer                |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Memory Total                  | Total Memory in bytes                                             | `Dependent item` | unifi.uap.memory.total                 |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Memory Usage %                | Current Memory Usage                                              | `Dependent item` | unifi.uap.memory.usage                 |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Memory Used                   | Used Memory in bytes                                              | `Dependent item` | unifi.uap.memory.used                  |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Model                         | Model                                                             | `Dependent item` | unifi.uap.model                        |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Name                          | Name                                                              | `Dependent item` | unifi.uap.name                         |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Serial                        | Serial                                                            | `Dependent item` | unifi.uap.serial                       |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP SOC Arch                      | SOC Arch                                                          | `Dependent item` | unifi.uap.soc.arch                     |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP State                         | State                                                             | `Dependent item` | unifi.uap.cpu.state                    |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Total RX Byte                 | Total rx in bytes                                                 | `Dependent item` | unifi.uap.rx                           |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Total TX Byte                 | Total tx in bytes                                                 | `Dependent item` | unifi.uap.tx                           |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Upgradable                    | Is an upgrade available                                           | `Dependent item` | unifi.uap.upgradable                   |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Uplink Device                 | Uplink device name                                                | `Dependent item` | unifi.uap.uplink.device                |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Uplink Port                   | Uplink device port                                                | `Dependent item` | unifi.uap.uplink.port                  |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Uplink Speed                  | Uplink device port speed                                          | `Dependent item` | unifi.uap.uplink.speed                 |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Uplink Type                   | Uplink device type                                                | `Dependent item` | unifi.uap.uplink.type                  |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Uptime                        | Uptime                                                            | `Dependent item` | unifi.uap.uptime                       |
+| *API stat/device/{$UNIFI.UAP.MAC}*: UAP Version                       | Software version                                                  | `Dependent item` | unifi.uap.version                      |
 
 ## Unifi UAP: Triggers
 
-| Name                                          | Description                                                    | Expression                                                             | Priority |
+| Name                                          | Description                                                    | Expression                                                             | Severity |
 | --------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------- | -------- |
+| AP Not Adopted                                | Alert if UAP need to be adopted                                | <p>***Expression***: last(/Unifi UAP/unifi.uap.adopted)<>"true"</p><p>***Recovery expression***:</p> | Information |
+| AP Offline                                    | Alert when UAP go offline                                      | <p>***Expression***: last(/Unifi UAP/unifi.uap.cpu.state,#3)<>1</p><p>***Recovery expression***:</p> | High        |
+| AP Rebooted                                   | Alert if UAP was rebooted                                      | <p>***Expression***: last(/Unifi UAP/unifi.uap.uptime)<1800</p><p>***Recovery expression***:</p> | Warning     |
 | CPU Usage > {$UNIFI.CPU.USAGE.HIGH}%          | Alert when CPU usage is above {$UNIFI.CPU.USAGE.HIGH}          | <p>***Expression***: avg(/Unifi UAP/unifi.uap.cpu.usage,{$UNIFI.CPU.USAGE.HIGH.SEC})>{$UNIFI.CPU.USAGE.HIGH}</p><p>***Recovery expression***:</p> | High        |
 | CPU Usage > {$UNIFI.CPU.USAGE.WARNING}%       | Alert when CPU usage is above {$UNIFI.CPU.USAGE.WARNING}       | <p>***Expression***: avg(/Unifi UAP/unifi.uap.cpu.usage,{$UNIFI.CPU.USAGE.WARNING.SEC})>{$UNIFI.CPU.USAGE.WARNING}</p><p>***Recovery expression***:</p> | Warning     |
 | Inform Url Changed                            | Alert on inform url change                                     | <p>***Expression***: last(/Unifi UAP/unifi.uap.inform.url,#1:now-24h)<>last(/Unifi UAP/unifi.uap.inform.url,#1)=1</p><p>***Recovery expression***:</p> | Warning     |
@@ -481,9 +657,8 @@ If you done all right now it auto discover all Unifi Dream Machine, Unifi Switch
 | Memory Usage > {$UNIFI.MEMORY.USAGE.WARNING}% | Alert when Memory usage is above {$UNIFI.MEMORY.USAGE.WARNING} | <p>***Expression***: avg(/Unifi UAP/unifi.uap.memory.usage,{$UNIFI.MEMORY.USAGE.WARNING.SEC})>{$UNIFI.MEMORY.USAGE.WARNING}</p><p>***Recovery expression***:</p> | Warning     |
 | Software Upgrade Available                    | Alert on software upgrade available                            | <p>***Expression***: last(/Unifi UAP/unifi.uap.upgradable)="true"</p><p>***Recovery expression***:</p> | Warning     |
 | Software Version Changed                      | Alert on software version change                               | <p>***Expression***: last(/Unifi UAP/unifi.uap.version,#1:now-24h)<>last(/Unifi UAP/unifi.uap.version,#1)=1</p><p>***Recovery expression***:</p> | Information |
-| SW Not Adopted                                | Alert if UAP need to be adopted                                | <p>***Expression***: last(/Unifi UAP/unifi.uap.adopted)<>"true"</p><p>***Recovery expression***:</p> | Information |
-| SW Offline                                    | Alert when UAP go offline                                      | <p>***Expression***: last(/Unifi UAP/unifi.uap.cpu.state,#3)<>1</p><p>***Recovery expression***:</p> | High        |
-| SW Rebooted                                   | Alert if UAP was rebooted                                      | <p>***Expression***: last(/Unifi UAP/unifi.uap.uptime)<1800</p><p>***Recovery expression***:</p> | Warning     |
+| Uplink Speed Changed to Lower Speed           | Alert on decrease in uplink speed                              | <p>***Expression***: last(/Unifi UAP/unifi.uap.uplink.speed,#1:now-24h)>last(/Unifi UAP/unifi.uap.uplink.speed,#1)=1</p><p>***Recovery expression***:</p> | Information |
+
 
 ## Contribute
 

@@ -16,6 +16,7 @@ This template is meant for monitoring Unifi network devices using Unifi Network 
 | Type | Description         |
 | ---- | ------------------- |
 | udm  | Unifi Dream Machine |
+| uxg  | UXG Gateway		 |
 | usw  | Unifi Switch        |
 | uap  | Unifi Acccess Point |
 
@@ -35,14 +36,22 @@ UDM:
 - CPU usage.
 - Memory usage.
 - Temperature sensors.
-- Metrics for al ports.
+- Metrics for all ports.
+- Other metrics.
+
+UXG:
+
+- CPU usage.
+- Memory usage.
+- Temperature sensors.
+- Metrics for all ports.
 - Other metrics.
 
 USW:
 
 - CPU usage.
 - Memory usage.
-- Metrics for al ports.
+- Metrics for all ports.
 - Other metrics.
 
 UAP:
