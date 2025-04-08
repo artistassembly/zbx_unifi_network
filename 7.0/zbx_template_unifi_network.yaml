@@ -5301,7 +5301,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
+              units: packets
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -5345,7 +5345,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
+              units: packets
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -5365,7 +5365,6 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -5385,7 +5384,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
+              units: packets
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -5425,7 +5424,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: Bps
+              units: bps
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -5433,6 +5432,9 @@ zabbix_export:
                 - type: JSONPATH
                   parameters:
                     - '$.[0]'
+                - type: MULTIPLIER
+                  parameters:
+                    - '8'
               master_item:
                 key: unifi.usw.device
               tags:
@@ -5527,7 +5529,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
+              units: packets
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -5571,7 +5573,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
+              units: packets
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -5591,7 +5593,6 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -5611,7 +5612,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
+              units: packets
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -5651,7 +5652,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: Bps
+              units: bps
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -5659,6 +5660,9 @@ zabbix_export:
                 - type: JSONPATH
                   parameters:
                     - '$.[0]'
+                - type: MULTIPLIER
+                  parameters:
+                    - '8'
               master_item:
                 key: unifi.usw.device
               tags:
@@ -6830,7 +6834,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
+              units: packets
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -6874,7 +6878,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
+              units: packets
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -6894,7 +6898,6 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -6914,7 +6917,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
+              units: packets
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -6954,7 +6957,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: Bps
+              units: bps
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -6962,6 +6965,9 @@ zabbix_export:
                 - type: JSONPATH
                   parameters:
                     - '$.[0]'
+                - type: MULTIPLIER
+                  parameters:
+                    - '8'
               master_item:
                 key: unifi.UXG.device
               tags:
@@ -7017,7 +7023,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
+              units: packets
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -7061,7 +7067,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
+              units: packets
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -7081,7 +7087,6 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -7101,7 +7106,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: B
+              units: packets
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -7141,7 +7146,7 @@ zabbix_export:
               delay: '0'
               history: 7d
               trends: 90d
-              units: Bps
+              units: bps
               preprocessing:
                 - type: JSONPATH
                   parameters:
@@ -7149,6 +7154,9 @@ zabbix_export:
                 - type: JSONPATH
                   parameters:
                     - '$.[0]'
+                - type: MULTIPLIER
+                  parameters:
+                    - '8'
               master_item:
                 key: unifi.UXG.device
               tags:
