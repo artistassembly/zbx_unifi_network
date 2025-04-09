@@ -2860,6 +2860,609 @@ zabbix_export:
               name: 'Software Version Changed'
               priority: INFO
       discovery_rules:
+        - uuid: deaafa2751f14ffca1ec33118e9ad238
+          name: Port
+          type: DEPENDENT
+          key: unifi.uap.port.discovery
+          delay: '0'
+          item_prototypes:
+            - uuid: d496b97b04fb43c190f530b3fe2fb526
+              name: 'Port {#ID} Enabled'
+              type: DEPENDENT
+              key: 'unifi.uap.port.enabled[{#ID}]'
+              delay: '0'
+              history: 7d
+              value_type: TEXT
+              trends: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].enable'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 231ca3c181ea4167b2e3948c54245ea9
+              name: 'Port {#ID} Media'
+              type: DEPENDENT
+              key: 'unifi.uap.port.media[{#ID}]'
+              delay: '0'
+              history: 7d
+              value_type: TEXT
+              trends: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].media'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: d692d784a4f54b7e9a19e31b6aee58e1
+              name: 'Port {#ID} Mode'
+              type: DEPENDENT
+              key: 'unifi.uap.port.mode[{#ID}]'
+              delay: '0'
+              history: 7d
+              value_type: TEXT
+              trends: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].op_mode'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 4811f54e24664f7f891abc3e7f8b28e5
+              name: 'Port {#ID} Name'
+              type: DEPENDENT
+              key: 'unifi.uap.port.name[{#ID}]'
+              delay: '0'
+              history: 7d
+              value_type: TEXT
+              trends: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].name'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: f5f3b536a32f4746b17eb5e049a82699
+              name: 'Port {#ID} POE Capable'
+              type: DEPENDENT
+              key: 'unifi.uap.port.poe.capable[{#ID}]'
+              delay: '0'
+              history: 7d
+              value_type: TEXT
+              trends: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].port_poe'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 92ebfa16a7ff4de087df4a5db75cdb27
+              name: 'Port {#ID} POE Good'
+              type: DEPENDENT
+              key: 'unifi.uap.port.poe.good[{#ID}]'
+              delay: '0'
+              history: 7d
+              value_type: TEXT
+              trends: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].poe_good'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 2338b25db9704230aaefa0c9157a814d
+              name: 'Port {#ID} POE Mode'
+              type: DEPENDENT
+              key: 'unifi.uap.port.poe.mode[{#ID}]'
+              delay: '0'
+              history: 7d
+              value_type: TEXT
+              trends: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].poe_mode'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 9a6dccf008614fb6985028ae5ac0bc48
+              name: 'Port {#ID} POE Power'
+              type: DEPENDENT
+              key: 'unifi.uap.port.poe.power[{#ID}]'
+              delay: '0'
+              history: 7d
+              value_type: FLOAT
+              trends: 90d
+              units: W
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].poe_power'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 49f1b409c5924801a1e613ad6a3bb153
+              name: 'Port {#ID} Total RX Broadcast'
+              type: DEPENDENT
+              key: 'unifi.uap.port.rx.broadcast[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              units: packets
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].rx_broadcast'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 772c25f5a12e4bc79b99496df26d4c32
+              name: 'Port {#ID} Total RX Delta'
+              type: DEPENDENT
+              key: 'unifi.uap.port.rx.delta[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              units: B
+              description: 'The delta (change) between data points. Used to calculate data received over time periods.'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].rx_bytes'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+                - type: SIMPLE_CHANGE
+                  parameters:
+                    - ''
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 5b1d84f232c242b5812fcd204bb3e5b1
+              name: 'Port {#ID} Total RX Dropped'
+              type: DEPENDENT
+              key: 'unifi.uap.port.rx.dropped[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              units: packets
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].rx_dropped'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: dd9b178daaac4c37a053c934e366e0f6
+              name: 'Port {#ID} Total RX Errors'
+              type: DEPENDENT
+              key: 'unifi.uap.port.rx.errors[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].rx_errors'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: dd722be4179946a284a8f6dd45e0c0d4
+              name: 'Port {#ID} Total RX Multicast'
+              type: DEPENDENT
+              key: 'unifi.uap.port.rx.multicast[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              units: packets
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].rx_multicast'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 2460eb8b3a284fe38b5bcd0832f98670
+              name: 'Port {#ID} Total RX Packets'
+              type: DEPENDENT
+              key: 'unifi.uap.port.rx.packets[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              units: packets
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].rx_packets'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 3eac866be6d34d8aae1dc4b4e3862e9e
+              name: 'Port {#ID} Rate RX'
+              type: DEPENDENT
+              key: 'unifi.uap.port.rx.rate[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              units: bps
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].[''rx_bytes-r'']'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+                - type: MULTIPLIER
+                  parameters:
+                    - '8'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 7b94282e16e14927bd982e68b7a4f42f
+              name: 'Port {#ID} Total RX'
+              type: DEPENDENT
+              key: 'unifi.uap.port.rx[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              units: B
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].rx_bytes'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: db0a027d5a774bbcb1891e4d13cb2505
+              name: 'Port {#ID} Speed'
+              type: DEPENDENT
+              key: 'unifi.uap.port.speed[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              units: bps
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].speed'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+                - type: MULTIPLIER
+                  parameters:
+                    - '1000000'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 115d945643c04f4c8befd2bd9173b218
+              name: 'Port {#ID} STP Cost'
+              type: DEPENDENT
+              key: 'unifi.uap.port.stp.cost[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].stp_pathcost'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 97a2371a251c4fb39550912d90e9c0e5
+              name: 'Port {#ID} STP State'
+              type: DEPENDENT
+              key: 'unifi.uap.port.stp.state[{#ID}]'
+              delay: '0'
+              history: 7d
+              value_type: TEXT
+              trends: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].stp_state'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: bfdc36858cfe4e729c861afad4bcff7f
+              name: 'Port {#ID} Total TX Broadcast'
+              type: DEPENDENT
+              key: 'unifi.uap.port.tx.broadcast[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              units: packets
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].tx_broadcast'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: abb145f1e2dc4d5c9eaf56f3359b501d
+              name: 'Port {#ID} Total TX Delta'
+              type: DEPENDENT
+              key: 'unifi.uap.port.tx.delta[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              units: B
+              description: 'The delta (change) between data points. Used to calculate data transmitted over time periods.'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].tx_bytes'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+                - type: SIMPLE_CHANGE
+                  parameters:
+                    - ''
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 091dc3bf65b246979703a927bd79d009
+              name: 'Port {#ID} Total TX Dropped'
+              type: DEPENDENT
+              key: 'unifi.uap.port.tx.dropped[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              units: packets
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].tx_dropped'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 83512fd3f6ce44e199186746e995b84e
+              name: 'Port {#ID} Total TX Errors'
+              type: DEPENDENT
+              key: 'unifi.uap.port.tx.errors[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].tx_errors'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 756f0eeadde54985a7afaad6c56c0f48
+              name: 'Port {#ID} Total TX Multicast'
+              type: DEPENDENT
+              key: 'unifi.uap.port.tx.multicast[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              units: packets
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].tx_multicast'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 2519be8e9a764a7c9825d496dd818c7e
+              name: 'Port {#ID} Total TX Packets'
+              type: DEPENDENT
+              key: 'unifi.uap.port.tx.packets[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              units: packets
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].tx_packets'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 1379a5da88b542e691b15924b8f29623
+              name: 'Port {#ID} Rate TX'
+              type: DEPENDENT
+              key: 'unifi.uap.port.tx.rate[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              units: bps
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].[''tx_bytes-r'']'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+                - type: MULTIPLIER
+                  parameters:
+                    - '8'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 3cfa26f7ce66400cb06e815ec2e0979b
+              name: 'Port {#ID} Total TX'
+              type: DEPENDENT
+              key: 'unifi.uap.port.tx[{#ID}]'
+              delay: '0'
+              history: 7d
+              trends: 90d
+              units: B
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].tx_bytes'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+            - uuid: 5e396b3a0c8043ac9439bb342a3da332
+              name: 'Port {#ID} Up'
+              type: DEPENDENT
+              key: 'unifi.uap.port.up[{#ID}]'
+              delay: '0'
+              history: 7d
+              value_type: TEXT
+              trends: '0'
+              preprocessing:
+                - type: JSONPATH
+                  parameters:
+                    - '$.data[0].port_table[?(@.port_idx==''{#ID}'')].up'
+                - type: JSONPATH
+                  parameters:
+                    - '$.[0]'
+              master_item:
+                key: unifi.uap.device
+              tags:
+                - tag: Application
+                  value: metrics
+          trigger_prototypes:
+            - uuid: 90cbfb7ebd124915aece391d0e29168c
+              expression: 'last(/Unifi UAP/unifi.uap.port.up[{#ID}],#1)="false" and last(/Unifi UAP/unifi.uap.port.enabled[{#ID}],#1)="true"'
+              name: 'Port {#ID} ({#NAME}) > Down'
+              priority: INFO
+              description: 'Port {#ID} ({#NAME}) is down.'
+            - uuid: 82673ac9d99e4edcbf129d9151b2138d
+              expression: '(avg(/Unifi UAP/unifi.uap.port.rx.rate[{#ID}],5m)>(last(/Unifi UAP/unifi.uap.port.speed[{#ID}],#1)*0.9) or avg(/Unifi UAP/unifi.uap.port.tx.rate[{#ID}],5m)>(last(/Unifi UAP/unifi.uap.port.speed[{#ID}],#1)*0.9)) and last(/Unifi UAP/unifi.uap.port.speed[{#ID}],#1)>0'
+              name: 'Port {#ID} ({#NAME}) > High Bandwidth'
+              priority: INFO
+              dependencies:
+                - name: 'Port {#ID} ({#NAME}) > Down'
+                  expression: 'last(/Unifi UAP/unifi.uap.port.up[{#ID}],#1)="false" and last(/Unifi UAP/unifi.uap.port.enabled[{#ID}],#1)="true"'
+          master_item:
+            key: unifi.uap.device
+          lld_macro_paths:
+            - lld_macro: '{#ID}'
+              path: $.port_idx
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - '$.data[0].port_table'
         - uuid: 76864c0422aa420b98433cd35765bb04
           name: Radio
           type: DEPENDENT
