@@ -4,8 +4,6 @@ zabbix_export:
     - uuid: 36bff6c29af64692839d077febfc7079
       name: 'Templates/Network devices'
   host_groups:
-    - uuid: 28267b2c9f9d4dd5b17e809ea90f8652
-      name: 'All Hosts'
     - uuid: c066ade8616c43d9acfac81bd1ef6a63
       name: Network
   templates:
@@ -2026,8 +2024,6 @@ zabbix_export:
               host: 'Unifi UXG {#NAME}'
               name: 'Unifi UXG {#NAME}'
               group_links:
-                - group:
-                    name: 'All Hosts'
                 - group:
                     name: Network
               templates:
