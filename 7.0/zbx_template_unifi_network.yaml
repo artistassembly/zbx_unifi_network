@@ -1916,8 +1916,6 @@ zabbix_export:
               name: 'Unifi UAP {#NAME}'
               group_links:
                 - group:
-                    name: 'All Hosts'
-                - group:
                     name: Network
               templates:
                 - name: 'Unifi UAP'
@@ -1955,8 +1953,6 @@ zabbix_export:
               name: 'Unifi UDM {#NAME}'
               group_links:
                 - group:
-                    name: 'All Hosts'
-                - group:
                     name: Network
               templates:
                 - name: 'Unifi UDM'
@@ -1993,8 +1989,6 @@ zabbix_export:
               host: 'Unifi USW {#NAME}'
               name: 'Unifi USW {#NAME}'
               group_links:
-                - group:
-                    name: 'All Hosts'
                 - group:
                     name: Network
               templates:
